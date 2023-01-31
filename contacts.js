@@ -2,6 +2,7 @@
 const contactsOperations = require('./db');
 
 
+
 const invokeAction = async ({ action, id, name, email, phone }) => {
     switch (action) {
         case "getAll":
@@ -16,9 +17,13 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
             console.log(contact);
             break;
         case "addContact":
-            const newContact = await contactsOperations.addContact({ name, email, phone: String(phone) });
+            // const newContact = await contactsOperations.addContact({ name: String(name), email: String(email) , phone: String(phone) });
+            const newContact = await contactsOperations.addContact(name, email, phone);
+
             console.log(newContact);
             break;
+
+        
         case "updateContactById":
             const updateContact = await contactsOperations.updateContactById(id, {name, email, phone});
              if (!updateContact) {

@@ -2,11 +2,17 @@ const { v4 } = require("uuid");
 const getAll = require('./getAll');
 const updateContacts = require('./updateContacts');
 
-const addContact = async (data) => {
+// const addContact = async (data) => {
+//     const contacts = await getAll();
+//     const newContact = { ...data, id: v4() };
+//     contacts.push(newContact);
+
+const addContact = async (name, email, phone) => {
     const contacts = await getAll();
-    const newContact = { ...data, id: v4() };
+    const newContact = { name: String(name), email: String(email), phone: String(phone), id: v4() };
     contacts.push(newContact);
     
+
     await updateContacts(contacts);
     return newContact;
     
